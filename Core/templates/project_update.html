@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Project</title>
+</head>
+<body>
+    <h1>Update Project</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="project_name">Project Name:</label>
+        <input type="text" id="project_name" name="project_name" value="{{ project.project_name }}" required>
+        <br>
+        <label for="project_client_name">Client Name:</label>
+        <input type="text" id="project_client_name" name="project_client_name" value="{{ project.project_client_name }}" required>
+        <br>
+        <label for="project_client_number">Client Number:</label>
+        <input type="text" id="project_client_number" name="project_client_number" value="{{ project.project_client_number }}" required>
+        <br>
+        <label for="project_client_address">Client Address:</label>
+        <input type="text" id="project_client_address" name="project_client_address" value="{{ project.project_client_address }}" required>
+        <br>
+        <button type="submit">Update Project</button>
+    </form>
+</body>
+</html>

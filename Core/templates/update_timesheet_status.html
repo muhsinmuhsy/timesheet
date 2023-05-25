@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <style>
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        select, input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            .form-container {
+                max-width: 100%;
+                padding: 10px;
+            }
+            
+            select, input[type="submit"] {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-center qq">Update Timesheet Status</h1>
+    
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col" class="table-primary text-nowrap">Member Name</th>
+                    <th scope="col" class="table-secondary text-nowrap">Date</th>
+                    <th scope="col" class="table-success text-nowrap">Project</th>
+                    <th scope="col" class="table-dark text-nowrap">Time</th>
+                    <th scope="col" class="table-danger text-nowrap">Location</th>
+                    <th scope="col" class="table-warning text-nowrap">type</th>
+                    <th scope="col" class="table-info text-nowrap">type2</th>
+                    <th scope="col" class="table-light text-nowrap">Description</th>
+                    <th scope="col" class="table-dark text-nowrap">Durection</th>
+                    <th scope="col" class="table-warning text-nowrap">status</th>
+                    
+
+                </tr>
+            </thead>
+            <tbody>
+                
+                    <tr class="text-center">
+                        <td  class="table-primary text-nowrap">{{ timesheet.employee.first_name }} {{ timesheet.employee.last_name }}</td>
+                        <td  class="table-secondary text-nowrap">{{ timesheet.date }}</td>
+                        <td  class="table-success text-nowrap">{{ timesheet.project }}</td>
+                        <td class="table-dark text-nowrap">{{ timesheet.start_time }} to {{ timesheet.end_time }}</td>
+                        <td  class="table-danger text-nowrap">{{timesheet.location}}</td>
+                        <td  class="table-warning text-nowrap">{{timesheet.type }}</td>
+                        <td  class="table-info text-nowrap">{{timesheet.type2 }}</td>
+                        <td  class="table-secondary text-nowrap">{{timesheet.description}} </td>
+                        <td  class="table-dark text-nowrap">{{ duration }} hrs</td>
+                        <td  class="table-warning text-nowrap">{{ timesheet.status }}</td>
+                        
+                    </tr>
+               
+            </tbody>
+        </table>
+    </div>
+
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select name="status" id="status">
+                    <option value="Pending" {% if timesheet.status == 'Pending' %}selected{% endif %}>Pending</option>
+                    <option value="Rejected" {% if timesheet.status == 'Rejected' %}selected{% endif %}>Rejected</option>
+                    <option value="Approved" {% if timesheet.status == 'Approved' %}selected{% endif %}>Approved</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+{% endblock content%}
