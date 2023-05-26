@@ -461,5 +461,8 @@ def update_timesheet_status(request, pk):
 
 # -------------------------- profile ----------------------------- #
 
+
+
 def profile(request):
-    return render(request, 'profile.html')
+    employee = Employees.objects.get(user=request.user)
+    return render(request, 'profile.html', {'employee': employee})

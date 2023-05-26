@@ -23,6 +23,18 @@
         <a href="{% url 'password_change' %}">Change Password</a>
 
     </p>
+    {% if employee.employees_photo %}
+    <img src="{{ employee.employees_photo.url }}" alt="Employee Photo" class="img-fluid">
+  {% else %}
+    <img src="{% static 'img/profile/default.jpg' %}" alt="Default Photo" class="img-fluid">
+  {% endif %}
+    
+<p>Name {{ request.user.first_name }} {{ request.user.last_name }}</p>
+<p>Employee Number {{ employee.employees_number }}</p>
+<p>Job {{ employee.employees_job }}</p>
+<p>Address {{ employee.employees_address }}</p>
+<p>Email {{ employee.employee_email }}</p>
+
     
 
 {% endblock content %}
